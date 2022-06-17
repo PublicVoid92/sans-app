@@ -67,4 +67,28 @@ class db_model extends Model
     }
 
 
+    public function getMaleCount(){
+
+        try {
+            $result = DB::connection('pgsql')->table('personnel_employee')->where('gender','M')->count();
+
+            return $result;
+        } catch (Exception $e) {
+            
+        }
+    }
+
+
+    public function getFemaleCount(){
+
+        try {
+            $result = DB::connection('pgsql')->table('personnel_employee')->where('gender','F')->count();
+
+            return $result;
+        } catch (Exception $e) {
+            
+        }
+    }
+
+
 }

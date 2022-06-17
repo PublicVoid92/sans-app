@@ -64,4 +64,13 @@ class setting_model extends Model
             
         }
     }
+
+    public function getClassCount(){
+        try {
+             $result = DB::connection('pgsql')->table('personnel_position')->count();
+            return $result;
+        } catch (Exception $e) {
+            
+        }
+    }
 }

@@ -127,4 +127,15 @@ class lecturer_model extends Model
             
         }
     }
+
+
+    public function getLecturerCount(){
+        try {
+            $count = DB::connection('pgsql')->table('personnel_lecturer')->count();
+
+            return $count;
+        } catch (Exception $e) {
+            
+        }
+    }
 }
