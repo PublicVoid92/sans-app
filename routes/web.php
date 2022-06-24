@@ -39,5 +39,9 @@ Route::any('/lecturer/lectureradd','lecturerController@lecturerAdd');
 Route::any('/lecturer/lectureredit','lecturerController@lecturerEdit');
 Route::any('/lecturer/lecturerdelete','lecturerController@lecturerDelete');
 
+//Email
+Route::get('/email/dailyemail','emailController@dailyEmail');
+Route::get('/email/lecturer','emailController@lecturerEmail');
+
 
 

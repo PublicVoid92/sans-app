@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Http\Controllers\emailController;
 
 class Kernel extends ConsoleKernel
 {
@@ -24,7 +25,18 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+
+        $schedule->call(function () {
+            $email_controller = new emailController;
+           $email_controller->dailyEmail();
+        })->name('daily email notification')->everyFiveMinutes();
+
+
+        $schedule->call(function () {
+            $email_controller = new emailController;
+           $email_controller->lecturerEmail();
+        })->name('lecturer email')->dailyAt('10:00');
+        
     }
 
     /**

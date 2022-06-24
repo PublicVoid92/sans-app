@@ -21,12 +21,8 @@ class dashboardController extends Controller
         $male_count = $db_model->getMaleCount();
         $female_count = $db_model->getFemaleCount();
         $grade_count =  $setting_model->getClassCount();
-        $lecturer_count = $lecturer_model->getLecturerCount();                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-
-
-        print_r($student_count);
-
-
+        $lecturer_count = $lecturer_model->getLecturerCount();                                                                                                                                                                                                                                                                                                                                                      
+        
         return view('dashboard',array(  'student_count'=>$student_count,
                                         'male_count'=>$male_count,
                                         'female_count'=>$female_count,
