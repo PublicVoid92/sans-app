@@ -35,10 +35,10 @@ class dashboardController extends Controller
 
 
         foreach ($studentByLevel as $key => $value) {
-            $str = substr($value->position_name, 0, 1);
+            $str = substr($value->position_name, 0, 2);
 
-            if (is_int($str)) {
-                if ($str == 1 || $str == 2 || $str == 3 || $str ==4) {
+            if (is_numeric($str)) {
+                if ($str == '1' || $str == '2' || $str == '3' || $str =='4') {
                     //elementary
                     $elementary[] = array(
 
@@ -48,7 +48,7 @@ class dashboardController extends Controller
                                         );
                 }
 
-                if ($str == 6 || $str == 7 || $str == 8) {
+                if ($str == '6' || $str == '7' || $str == '8') {
                     //junior high school
 
                     $jhs[] = array(
@@ -59,7 +59,7 @@ class dashboardController extends Controller
                                         );
                 }
 
-                if($str == 9 || $str == 10 || $str == 11 || $str == 12){
+                if($str == '9' || $str == '10' || $str == '11' || $str == '12'){
                     // high school
 
                     $hs[] = array(
@@ -83,9 +83,7 @@ class dashboardController extends Controller
         }
 
 
-
         print_r($early_year);
-
 
 
         
