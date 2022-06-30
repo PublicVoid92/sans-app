@@ -37,7 +37,7 @@ class dashboardController extends Controller
         foreach ($studentByLevel as $key => $value) {
             $str = (int) filter_var($value->position_name, FILTER_SANITIZE_NUMBER_INT);;
 
-            if (is_numeric($str)) {
+            if (!empty($str)) {
                 if ($str == '1' || $str == '2' || $str == '3' || $str =='4') {
                     //elementary
                     $elementary[] = array(
