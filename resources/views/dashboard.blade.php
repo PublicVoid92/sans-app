@@ -133,7 +133,7 @@
 
 
   <div class="col-md-3 col-sm-4 ">
-    <div class="x_panel tile fixed_height_320">
+    <div class="x_panel tile">
       <div class="x_title">
         <h2>Early Years</h2>
         <ul class="nav navbar-right panel_toolbox">
@@ -178,7 +178,7 @@
     </div>
   </div>
    <div class="col-md-3 col-sm-4 ">
-    <div class="x_panel tile fixed_height_320">
+    <div class="x_panel tile">
       <div class="x_title">
         <h2>Elementary School</h2>
         <ul class="nav navbar-right panel_toolbox">
@@ -224,7 +224,7 @@
     </div>
   </div>
    <div class="col-md-3 col-sm-4 ">
-    <div class="x_panel tile fixed_height_320">
+    <div class="x_panel tile">
       <div class="x_title">
         <h2>Junior High School (JHS)</h2>
         <ul class="nav navbar-right panel_toolbox">
@@ -268,7 +268,7 @@
     </div>
   </div>
    <div class="col-md-3 col-sm-4 ">
-    <div class="x_panel tile fixed_height_320">
+    <div class="x_panel tile">
       <div class="x_title">
         <h2>High School</h2>
         <ul class="nav navbar-right panel_toolbox">
