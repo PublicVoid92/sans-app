@@ -83,7 +83,7 @@ class dashboardController extends Controller
         }
 
 
-        print_r($early_year);
+    
 
 
         

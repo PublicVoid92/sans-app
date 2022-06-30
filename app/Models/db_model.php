@@ -199,7 +199,7 @@ class db_model extends Model
     public function getStudentCountByLevel(){
         try {
             $result = DB::connection('pgsql')->table('personnel_position as a')->selectRaw("a.id,a.position_name,count(b.id)")->leftjoin('personnel_employee as b','a.id','=','b.position_id')->
-            groupbyraw("a.id,a.position_name")->get()->toarray();
+            groupbyraw("a.id,a.position_name")->orderby('a.position_name')->get()->toarray();
 
             return $result;
         } catch (Exception $e) {
