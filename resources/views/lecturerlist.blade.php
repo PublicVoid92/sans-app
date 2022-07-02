@@ -60,7 +60,7 @@
 									<label>Class</label>
 									<select class="form-control" id="classname" name="classname">
 
-										<option>-</option>
+										<option value="0">-</option>
 										@if(!empty($classData))
 										@foreach($classData as $key => $value)
 
@@ -138,8 +138,8 @@
 									<input type="email" name="email-{{$value->id}}" id="email-{{$value->id}}" class="form-control" value="{{$value->email}}">
 									<label>Class</label>
 									<select class="form-control" id="classname-{{$value->id}}" name="classname-{{$value->id}}">
-
-										<option>-</option>
+										
+										<option value="0">-</option>
 										@if(!empty($classData))
 										@foreach($classData as $k => $v)
 											@if($v->id == $value->position_id )
