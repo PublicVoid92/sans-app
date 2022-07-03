@@ -97,7 +97,7 @@ class db_model extends Model
                         ->select('a.empid','a.punch_datetime','a.punch_state','b.first_name','b.last_name','c.value')
                         ->join('personnel_employee as b','a.empid','=','b.id')
                         ->leftjoin('personnel_employeeextrainfo as c','a.empid','=','c.employee_id')
-                        ->wheredate('a.punch_datetime',date('Y-m-d'))
+                        ->wheredate('a.punch_datettime',date('Y-m-d'))
                         ->where('a.ep_status',0)
                         ->get()->toarray();
 
