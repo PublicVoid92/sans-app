@@ -39,7 +39,7 @@ class emailController extends Controller
                    }
                }
 
-               dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datetime,$value->punch_state,$primary_email,$secondary_email));
+               dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datettime,$value->punch_state,$primary_email,$secondary_email));
 
                $primary_email = array();
                $secondary_email = array();
