@@ -94,7 +94,7 @@ class db_model extends Model
     public function getDailyEmailData(){
         try {
             $result = DB::connection('pgsql')->table('personnel_emailfunction as a')
-                        ->select('a.empid','a.punch_datetime','a.punch_state','b.first_name','b.last_name','c.value')
+                        ->select('a.empid','a.punch_datettime','a.punch_state','b.first_name','b.last_name','c.value')
                         ->join('personnel_employee as b','a.empid','=','b.id')
                         ->leftjoin('personnel_employeeextrainfo as c','a.empid','=','c.employee_id')
                         ->wheredate('a.punch_datettime',date('Y-m-d'))
