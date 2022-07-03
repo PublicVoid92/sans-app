@@ -97,7 +97,7 @@ class db_model extends Model
                         ->select('a.empid','a.punch_datetime','a.punch_state','b.first_name','b.last_name','c.value')
                         ->join('personnel_employee as b','a.empid','=','b.id')
                         ->leftjoin('personnel_employeeextrainfo as c','a.empid','=','c.employee_id')
-                        ->where('a.punch_datetime','LIKE','%'.date('Y-m-d').'%')
+                        ->wheredate('a.punch_datetime',date('Y-m-d'))
                         ->where('a.ep_status',0)
                         ->get()->toarray();
 
@@ -182,6 +182,21 @@ class db_model extends Model
         try {
             $result = DB::connection('pgsql')->table('iclock_transaction')
             ->select('emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->get()->toarray();
+
+
+            return $result;
+        } catch (Exception $e) {
+            
+        }
+
+
+    }
+
+
+     public function getTodayCheckin(){
+        try {
+            $result = DB::connection('pgsql')->table('iclock_transaction')
+            ->select('emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->where('punch_state',0)->get()->toarray();
 
 
             return $result;
