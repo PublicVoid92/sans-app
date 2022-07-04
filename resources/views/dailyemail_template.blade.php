@@ -14,7 +14,7 @@
 						);
 	?>
 
-	<h3>This email is from ICS Attendance System</h3>
+	<h3>This email is from ICS Attendance System</h3>	
 	
 	<p>Hello Parent's of {{$fullname}}</p>
 
