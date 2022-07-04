@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
         $schedule->call(function () {
             $email_controller = new emailController;
            $email_controller->lecturerEmail();
-        })->name('lecturer email')->dailyAt('10:00');
+        })->name('lecturer email')->dailyAt('09:00');
         
     }
 

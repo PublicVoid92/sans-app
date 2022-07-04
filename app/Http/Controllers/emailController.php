@@ -108,7 +108,7 @@ class emailController extends Controller
 
                         $a_status = '';
                         if (isset($attendance_array[$v->id])) {
-                            if (date("H:i", strtotime($attendance_array[$v->id])) <= '09:00') {
+                            if (date("H:i", strtotime($attendance_array[$v->id])) <= '08:10') {
                                 $a_status = ' Present ';
                             }else{
                                 $a_status = 'Tardy';
