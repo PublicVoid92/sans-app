@@ -14,9 +14,12 @@
 	</style>
 </head>
 <body>
+
+<h3>This email is from ICS Attendance System</h3><br>
+
 <p>Hello {{$firstname}},</p>
-<br>
-<p>Here are the attendance for class {{$classname}} at {{date('d/m/Y')}}</p>
+
+<p>Here are the attendance for class {{$classname}} on {{date('d/m/Y')}}</p>
 
 <table width="60%">
 	<thead>
@@ -30,7 +33,7 @@
 			<tr>
 				<td><center>{{$no}}</center></td>
 				<td>{{$value['firstname'].' '.$value['lastname']}}</td>
-				<td>{{$value['attendance_status']}}</td>
+				<td style="text-align: center">{{$value['attendance_status']}}</td>
 
 
 				
