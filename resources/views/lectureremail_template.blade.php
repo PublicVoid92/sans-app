@@ -19,7 +19,7 @@
 
 <p>Hello {{$firstname}},</p>
 
-<p>Here are the attendance for grade {{$classname}} class on {{date('d/m/Y')}}</p>
+<p>Here is the attendance for grade {{$classname}} class on {{date('d/m/Y')}}</p>
 
 <table width="60%">
 	<thead>
