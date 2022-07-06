@@ -47,5 +47,7 @@
 
 
 </table>
+<br><hr>
+	<p>This is an automated email. Please do not reply.</p>
 </body>
 </html>

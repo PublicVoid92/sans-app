@@ -52,7 +52,7 @@
     <script src="{{url('/')}}/gentelella-master/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
     <!-- Custom Theme Scripts -->
-    <script src="{{url('/')}}/gentelella-master/gentelella-master/build/js/custom.min.js"></script>
+    <script src="{{url('/')}}/gentelella-master/gentelella-master/build/js/custom.js"></script>
 	
   </body>
 </html>

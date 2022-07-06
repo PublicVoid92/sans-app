@@ -35,6 +35,17 @@ class classController extends Controller
     	$class_data = $setting_model->getClassByID($input['id']);
     	$student_data = $db_model->getStudentByClassID($input['id']);
 
-    	return view('class_details',array('class_data'=>$class_data,'student_data'=>$student_data));
+
+        $getattendance = $db_model->getAttendanceByMonth($input['id']);
+
+
+        $getattendance_array = array();
+
+        foreach ($getattendance as $key => $value) {
+           $getattendance_array[$value->id][date_format(date_create($value->punch_time),"n")] = $value->punch_time; 
+        }
+
+
+    	return view('class_details',array('class_data'=>$class_data,'student_data'=>$student_data,'getattendance_array'=>$getattendance_array));
     }
 }

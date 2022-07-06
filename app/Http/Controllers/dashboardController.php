@@ -102,4 +102,38 @@ class dashboardController extends Controller
 
                                             ));
     }
+
+
+
+    public function getSummary(){
+
+            try {
+                $db_model = new db_model;
+
+
+                $all_attendance = $db_model->getTodayCheckin();
+
+                $present = 0;
+                $tardy = 0;
+
+                foreach($all_attendance as $key => $value){
+
+                    // if(date("H:i", strtotime($value->punch_time) <= '09:00'){
+                    //     // $present = $present + 1;
+                    // }
+                    // if (date("H:i", strtotime($attendance_array[$v->id])) > '09:00') {
+                    //     // $tardy = $tardy +1 ;
+                    // }
+                }
+
+                
+
+
+
+
+            } catch (Exception $e) {
+                
+            }
+
+    }
 }

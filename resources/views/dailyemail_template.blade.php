@@ -27,7 +27,7 @@
 	
 
 	<br><hr>
-	<p>This is an automated email. Do not reply.</p>
+	<p>This is an automated email. Please do not reply.</p>
 
 
 </body>

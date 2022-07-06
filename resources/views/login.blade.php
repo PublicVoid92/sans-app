@@ -44,7 +44,7 @@
               </div>
               <div>
               <!--   <a class="btn btn-success btn-block submit" href="index.html">Log in</a> -->
-                <a class="btn btn-success btn-block" onclick="login()">Log in</a>
+                <a class="btn btn-success btn-block" onclick="login()" style="color:white;">Log in</a>
                
               </div>
 

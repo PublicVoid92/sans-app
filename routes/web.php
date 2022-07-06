@@ -18,8 +18,12 @@ Route::get('/', function () {
 });
 
 Route::post('loginfunction','lecturerController@loginFunction');
+Route::get('logoutfunction','lecturerController@logout');
 
 Route::get('mainmenu/dashboard','dashboardController@dashboard');
+
+Route::get('ajax/getSummary','dashboardController@getSummary');
+
 
 Route::get('/connectioncheck','settings@TestConnection');
 

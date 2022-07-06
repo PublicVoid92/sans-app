@@ -74,7 +74,7 @@
 											@for($i=1;$i<=$number;$i++)
 
 											 @if((int)date('d') == $i)
-											 	<td  class="table-success">{{$i}}</td>
+											 	<td>{{$i}}*</td>
 											 @else
 											 	<td>{{$i}}</td>
 											 @endif
@@ -86,16 +86,35 @@
 										<?php $no = 1 ?>
 										@foreach($student_data as $key => $value)
 										<tr>
-											<td>{{$no}}</td>
+											<td>{{$value->id}}</td>
 											<td>{{$value->emp_code}}</td>
 											<td>{{$value->first_name}}</td>
 											<td>{{$value->last_name}}</td>
 											@for($i=1;$i<=$number;$i++)
-											 @if((int)date('d') == $i)
-											 	<td  class="table-success"></td>
-											 @else
-											 	<td></td>
-											 @endif
+											@if(isset($getattendance_array[$value->id][$i]))
+
+												@if(date_format(date_create($getattendance_array[$value->id][$i]),"H:i") <= '08:10')
+												 	<td  class="table-success">P</td>
+												@endif
+
+
+												@if(date_format(date_create($getattendance_array[$value->id][$i]),"H:i") > '08:10')
+													
+												 	<td  class="table-warning">T</td>
+													 
+												@endif
+
+
+
+
+
+
+											@else
+											
+												 	<td>A</td>
+												
+											@endif
+											
 											@endfor
 											<?php $no = $no + 1;?>
 											@endforeach

@@ -95,4 +95,16 @@ class lecturerController extends Controller
             
         }
     }
+
+
+
+    public function logout(Request $request){
+        try {
+            $request->session()->flush();
+
+            return redirect('/');
+        } catch (Exception $e) {
+            
+        }
+    }
 }

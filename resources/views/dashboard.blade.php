@@ -58,14 +58,14 @@
         <table class="" style="width:100%">
           <tr>
             <th style="width:37%;">
-              <p>Top 5</p>
+            <!--   <p>Top 5</p> -->
             </th>
             <th>
               <div class="col-lg-7 col-md-7 col-sm-7 ">
-                <p class="">Device</p>
+                <p class="">Status</p>
               </div>
               <div class="col-lg-5 col-md-5 col-sm-5 ">
-                <p class="">Progress</p>
+                <p class="">Percentage</p>
               </div>
             </th>
           </tr>
@@ -77,34 +77,23 @@
               <table class="tile_info">
                 <tr>
                   <td>
-                    <p><i class="fa fa-square blue"></i>IOS </p>
+                    <p><i class="fa fa-square green"></i>Presents </p>
                   </td>
                   <td>40%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square green"></i>Android </p>
+                    <p><i class="fa fa-square orange"></i>Tardy </p>
                   </td>
                   <td>10%</td>
                 </tr>
                 <tr>
                   <td>
-                    <p><i class="fa fa-square purple"></i>Blackberry </p>
+                    <p><i class="fa fa-square red"></i>Absent </p>
                   </td>
                   <td>20%</td>
                 </tr>
-                <tr>
-                  <td>
-                    <p><i class="fa fa-square aero"></i>Symbian </p>
-                  </td>
-                  <td>15%</td>
-                </tr>
-                <tr>
-                  <td>
-                    <p><i class="fa fa-square red"></i>Others </p>
-                  </td>
-                  <td>30%</td>
-                </tr>
+                
               </table>
             </td>
           </tr>
@@ -331,3 +320,57 @@
 
 
 @include('footer')
+
+
+
+<script>
+  
+  $( document ).ready(function() {
+     if (typeof (Chart) === 'undefined') { return; }
+
+    console.log('init_chart_doughnut');
+
+    if ($('.canvasDoughnut').length) {
+
+        var chart_doughnut_settings = {
+            type: 'doughnut',
+            tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+            data: {
+                labels: [
+                    "Tardy",
+                    "Absent",
+                    "Present"
+                ],
+                datasets: [{
+                    data: [15, 20, 30],
+                    backgroundColor: [
+                        "#ffbb33",
+                        "#ff4444",
+                         "#00C851"
+                   
+                    ],
+                    hoverBackgroundColor: [
+                        "#FF8800",
+                        "#CC0000",
+                       
+                             "#007E33"
+                    ]
+                }]
+            },
+            options: {
+                legend: false,
+                responsive: false
+            }
+        }
+
+        $('.canvasDoughnut').each(function () {
+
+            var chart_element = $(this);
+            var chart_doughnut = new Chart(chart_element, chart_doughnut_settings);
+
+        });
+
+    }
+});
+
+</script>

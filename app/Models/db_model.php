@@ -223,4 +223,24 @@ class db_model extends Model
     }
 
 
+    public function getAttendanceByMonth($classid){
+
+        try {
+             $result = DB::connection('pgsql')->table('personnel_employee as a')
+             ->select('a.id','b.punch_time')
+             ->leftjoin('iclock_transaction as b','b.emp_id','=','a.id')
+             ->where('a.position_id',$classid)
+             ->where('punch_state','0')
+             ->whereMonth('punch_time',date('m'))
+             ->get()->toarray();
+
+
+             return $result;
+
+        } catch (Exception $e) {
+            
+        }
+    }
+
+
 }
