@@ -9,8 +9,8 @@
 	<?php 
 
 		$status = array(
-							'0'=>'Check In',
-							'1'=>'Check Out'
+							'0'=>'checked into',
+							'1'=>'checked out'
 						);
 	?>
 
@@ -19,7 +19,7 @@
 	<p>Hello Parent's of {{$fullname}}</p>
 
 	@if($punchstate == 0)
-		<p>This email is to inform you that {{$fullname}} has {{$status[$punchstate]}} into International Community School Abuja ( ICS ) on {{date("d/m/Y", strtotime($punchtime))}} at {{date("H:i", strtotime($punchtime))}}</p>
+		<p>This email is to inform you that {{$fullname}} has {{$status[$punchstate]}}  International Community School Abuja ( ICS ) on {{date("d/m/Y", strtotime($punchtime))}} at {{date("H:i", strtotime($punchtime))}}</p>
 	@else
 			<p>This email is to inform you that {{$fullname}} has {{$status[$punchstate]}} from International Community School Abuja ( ICS ) on {{date("d/m/Y", strtotime($punchtime))}} at {{date("H:i", strtotime($punchtime))}}</p>
 
