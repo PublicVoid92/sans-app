@@ -79,19 +79,19 @@
                   <td>
                     <p><i class="fa fa-square green"></i>Presents </p>
                   </td>
-                  <td>40%</td>
+                  <td>{{round(($present/$student_count)*100,2)}}%</td>
                 </tr>
                 <tr>
                   <td>
                     <p><i class="fa fa-square orange"></i>Tardy </p>
                   </td>
-                  <td>10%</td>
+                  <td>{{round(($tardy/$student_count)*100,2)}}%</td>
                 </tr>
                 <tr>
                   <td>
                     <p><i class="fa fa-square red"></i>Absent </p>
                   </td>
-                  <td>20%</td>
+                  <td>{{round((($student_count - ($present + $tardy))/$student_count)*100,2)}}%</td>
                 </tr>
                 
               </table>
@@ -313,7 +313,9 @@
 
 
 <div class="row">
-  
+    <input type="hidden" name="absent" id="absent" value="{{$student_count - ($present + $tardy)}}">
+    <input type="hidden" name="present" id="present" value="{{$present}}">
+    <input type="hidden" name="tardy" id="tardy" value="{{$tardy}}">
 
 
 </div>
@@ -326,6 +328,17 @@
 <script>
   
   $( document ).ready(function() {
+
+    var present = document.getElementById('present').value;
+    var tardy = document.getElementById('tardy').value;
+    var absent = document.getElementById('absent').value;
+
+
+    console.log(present);
+    console.log(tardy);
+    console.log(absent);
+
+
      if (typeof (Chart) === 'undefined') { return; }
 
     console.log('init_chart_doughnut');
@@ -342,7 +355,7 @@
                     "Present"
                 ],
                 datasets: [{
-                    data: [15, 20, 30],
+                    data: [tardy, absent, present],
                     backgroundColor: [
                         "#ffbb33",
                         "#ff4444",
@@ -352,8 +365,7 @@
                     hoverBackgroundColor: [
                         "#FF8800",
                         "#CC0000",
-                       
-                             "#007E33"
+                        "#007E33"
                     ]
                 }]
             },

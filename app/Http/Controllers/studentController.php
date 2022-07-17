@@ -45,10 +45,25 @@ class studentController extends Controller
                 $extra_info[$k]=$v;
             }
 
+            // attendance summary
+
+            $attendance_summary = $db_model->getAttendanceByStudentID($input['id']);
+
+
+            $getattendance_array = array();
+
+            foreach ($attendance_summary as $key => $value) {
+               $getattendance_array[$value->id][date_format(date_create($value->punch_time),"d")] = $value->punch_time; 
+            }
+
+
+           
+
             return view('student_detail',array(
                                                 'data'=>$data,
                                                 'cf'=>$cf,
-                                                'extra_info'=>$extra_info
+                                                'extra_info'=>$extra_info,
+                                                'getattendance_array'=>$getattendance_array
 
 
 

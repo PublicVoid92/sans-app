@@ -50,6 +50,8 @@
     <!-- bootstrap-daterangepicker -->
     <script src="{{url('/')}}/gentelella-master/gentelella-master/vendors/moment/min/moment.min.js"></script>
     <script src="{{url('/')}}/gentelella-master/gentelella-master/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+     <script src="{{url('/')}}/gentelella-master/gentelella-master/vendors/raphael/raphael.min.js"></script>
+<script src="{{url('/')}}/gentelella-master/gentelella-master/vendors/morris.js/morris.min.js"></script>
 
     <!-- Custom Theme Scripts -->
     <script src="{{url('/')}}/gentelella-master/gentelella-master/build/js/custom.js"></script>

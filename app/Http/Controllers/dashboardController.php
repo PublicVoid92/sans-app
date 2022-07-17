@@ -82,6 +82,13 @@ class dashboardController extends Controller
             }
         }
 
+        // Present
+
+        $present = $db_model->getTodayPresent();
+        $tardy = $db_model->getTodayTardy();
+
+        // Tardy
+
 
     
 
@@ -95,7 +102,9 @@ class dashboardController extends Controller
                                         'early_year'=>$early_year,
                                         'elementary'=>$elementary,
                                         'jhs'=>$jhs,
-                                        'hs'=>$hs
+                                        'hs'=>$hs,
+                                        'present'=>$present,
+                                        'tardy'=>$tardy
 
 
 

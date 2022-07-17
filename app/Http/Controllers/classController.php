@@ -42,7 +42,7 @@ class classController extends Controller
         $getattendance_array = array();
 
         foreach ($getattendance as $key => $value) {
-           $getattendance_array[$value->id][date_format(date_create($value->punch_time),"n")] = $value->punch_time; 
+           $getattendance_array[$value->id][date_format(date_create($value->punch_time),"d")] = $value->punch_time; 
         }
 
 

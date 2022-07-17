@@ -26,9 +26,10 @@ Route::get('ajax/getSummary','dashboardController@getSummary');
 
 
 Route::get('/connectioncheck','settings@TestConnection');
-
+//Student
 Route::get('/students/studentlist','studentController@studentlist');
 Route::get('/students/studentdetails','studentController@studentDetail');
+Route::any('/students/getattendancebyid','studentController@getAttendanceByID');
 
 
 //Classes

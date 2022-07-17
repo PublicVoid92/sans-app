@@ -181,7 +181,7 @@ class db_model extends Model
     public function getTodayAttendance(){
         try {
             $result = DB::connection('pgsql')->table('iclock_transaction')
-            ->select('emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->get()->toarray();
+            ->select('emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->where('punch_state',0)->get()->toarray();
 
 
             return $result;
@@ -196,7 +196,7 @@ class db_model extends Model
      public function getTodayCheckin(){
         try {
             $result = DB::connection('pgsql')->table('iclock_transaction')
-            ->select('emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->where('punch_state',0)->get()->toarray();
+            ->selectraw('distinct(empcode)','emp_id','punch_time')->where('punch_time','LIKE','%'.date('Y-m-d').'%')->where('punch_state',0)->get()->toarray();
 
 
             return $result;
@@ -237,6 +237,59 @@ class db_model extends Model
 
              return $result;
 
+        } catch (Exception $e) {
+            
+        }
+    }
+
+
+    public function getAttendanceByStudentID($studentid){
+
+        try {
+             $result = DB::connection('pgsql')->table('personnel_employee as a')
+             ->select('a.id','b.punch_time')
+             ->leftjoin('iclock_transaction as b','b.emp_id','=','a.id')
+             ->where('a.id',$studentid)
+             ->where('punch_state','0')
+             ->whereMonth('punch_time',date('m'))
+             ->get()->toarray();
+
+
+             return $result;
+
+        } catch (Exception $e) {
+            
+        }
+    }
+
+
+
+    public function getTodayPresent(){
+
+        try {
+            $result =  DB::connection('pgsql')->table('iclock_transaction')
+                    ->whereDate('punch_time',date('Y-m-d'))
+                    ->whereTime('punch_time','<=','08:10:00')
+                    ->where('punch_state','0')
+                    ->count();
+
+            return $result;
+        } catch (Exception $e) {
+            
+        }
+
+    }
+
+
+    public function getTodayTardy(){
+        try {
+              $result =  DB::connection('pgsql')->table('iclock_transaction')
+                    ->whereDate('punch_time',date('Y-m-d'))
+                    ->whereTime('punch_time','>','08:10:00')
+                    ->where('punch_state','0')
+                    ->count();
+
+            return $result;
         } catch (Exception $e) {
             
         }

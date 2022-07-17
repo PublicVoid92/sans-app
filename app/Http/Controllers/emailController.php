@@ -10,7 +10,7 @@ use App\Jobs\lecturerEmailQueue;
 
 class emailController extends Controller
 {
-    
+
 
 
     public function dailyEmail(){
@@ -25,10 +25,10 @@ class emailController extends Controller
 
             $email_array = array();
             foreach ($email_list as $key => $value) {
-             
 
-               if ($value->value) {
-                   foreach (json_decode($value->value) as $k => $v) {
+
+                if ($value->value) {
+                    foreach (json_decode($value->value) as $k => $v) {
                         if($k == 9){
                             $primary_email[] = $v;
                         }
@@ -36,17 +36,17 @@ class emailController extends Controller
                         if ($k == 10 || $k == 11) {
                             $secondary_email[] = $v;
                         }
-                   }
-               }
+                    }
+                }
 
-               dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datettime,$value->punch_state,$primary_email,$secondary_email));
+                dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datettime,$value->punch_state,$primary_email,$secondary_email));
 
-               $primary_email = array();
-               $secondary_email = array();
+                $primary_email = array();
+                $secondary_email = array();
             }
 
         } catch (Exception $e) {
-            
+
         }
     }
 
@@ -54,7 +54,7 @@ class emailController extends Controller
 
     public function lecturerEmail(){
         try {
-            
+
 
             $db_model = new db_model;
 
@@ -65,23 +65,23 @@ class emailController extends Controller
             $student_data = array();
 
             foreach ($lecturer_class as $key => $value) {
-                
-               $class_array[] = $value->id;
-               $lecturer_data[$value->id] = array(
-                                                    'id'=>$value->id,
-                                                    'firstname'=>$value->firstname,
-                                                    'fullname'=>$value->fullname,
-                                                    'email'=>$value->email,
-                                                    'class_name'=>$value->position_name
+
+                $class_array[] = $value->id;
+                $lecturer_data[$value->id] = array(
+                    'id'=>$value->id,
+                    'firstname'=>$value->firstname,
+                    'fullname'=>$value->fullname,
+                    'email'=>$value->email,
+                    'class_name'=>$value->position_name
 
 
 
 
-                                        );
+                );
 
             }
 
-           
+
 
             $student_data = $db_model->getAllClassByArray($class_array);
             $attendance_data = $db_model->getTodayAttendance();
@@ -92,56 +92,78 @@ class emailController extends Controller
                 $attendance_array[$value->emp_id] = $value->punch_time;
             }
 
+         
+
             // get all class function
             // get all today attendance function
 
             //Cross check studentid[attendance] and categorize
 
             $student_array = array();
-            // 
+            $check = array();
+
+            $no = 0;
             foreach ($lecturer_data as $key => $value) {
-                
+
+                $check[$key] = $no;
 
                 foreach ($student_data as $k => $v) {
 
                     if ($v->position_id == $key) {
 
                         $a_status = '';
+
                         if (isset($attendance_array[$v->id])) {
-                            if (date("H:i", strtotime($attendance_array[$v->id])) <= '08:10') {
-                                $a_status = ' Present ';
+
+                       
+
+                            // echo $attendance_array[$v->id].'<br>';
+                            if (date_format(date_create($attendance_array[$v->id]),"H:i") <= '08:10') {
+                                $a_status = 'Present';
                             }else{
                                 $a_status = 'Tardy';
                             }
                         }else{
-                            $a_status = ' Absent ';
+                            $a_status = 'Absent';
+                        }
+                        //check class attendance
+                        if ($a_status == 'Present' || $a_status == 'Tardy') {
+                            // $check[$key] = array($a_status);
+                            $no = $no +1;
+                            $check[$key] = $no;
                         }
 
-                       $student_array[$key][] = array(
-                                                                    'firstname'=>$v->first_name,
-                                                                    'lastname'=>$v->last_name,
-                                                                    'attendance_status'=>$a_status
+                        $student_array[$key][] = array(
+                            'id'=>$v->emp_code,
+                            'firstname'=>$v->first_name,
+                            'lastname'=>$v->last_name,
+                            'attendance_status'=>$a_status
 
-
-
-                                                        );
+                        );
                     }
-                    
+
                 }
 
+                // echo $check[$key];
                 // run job to send email
-                dispatch(new lecturerEmailQueue($value['email'],$value['id'],$value['class_name'],$value['firstname'],$value['fullname'],$student_array));
+                if ($check[$key] != 0) {
+                    dispatch(new lecturerEmailQueue($value['email'],$value['id'],$value['class_name'],$value['firstname'],$value['fullname'],$student_array));
+                }
 
-                 $student_array = array();
+                // print_r($student_array);
+
+                $no = 0;
+                $check = array();
+                $student_array = array();
             }
 
             // ------------------------------------------------------------
-        
 
 
-           
+
+
         } catch (Exception $e) {
-            
+
         }
     }
 }

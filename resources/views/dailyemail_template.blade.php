@@ -9,7 +9,7 @@
 	<?php 
 
 		$status = array(
-							'0'=>'checked into',
+							'0'=>'checked int',
 							'1'=>'checked out'
 						);
 	?>

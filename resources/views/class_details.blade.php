@@ -86,7 +86,7 @@
 										<?php $no = 1 ?>
 										@foreach($student_data as $key => $value)
 										<tr>
-											<td>{{$value->id}}</td>
+											<td>{{$no}}</td>
 											<td>{{$value->emp_code}}</td>
 											<td>{{$value->first_name}}</td>
 											<td>{{$value->last_name}}</td>
