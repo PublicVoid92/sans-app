@@ -49,7 +49,7 @@
 					<div class="row">
 
 						<div class="col-md-12">
-						<h5><br><u>Attendance Month:{{date('M')}}</u><br></h5>	
+						<h5><br><u>Attendance Month:{{date('F')}}</u><br></h5>	
 						</div>
 						
 
