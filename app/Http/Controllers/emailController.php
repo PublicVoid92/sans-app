@@ -29,11 +29,11 @@ class emailController extends Controller
 
                 if ($value->value) {
                     foreach (json_decode($value->value) as $k => $v) {
-                        if($k == 9){
+                        if($k == 7){
                             $primary_email[] = $v;
                         }
                         //cc-carbon copy
-                        if ($k == 10 || $k == 11) {
+                        if ($k == 8 || $k == 9) {
                             $secondary_email[] = $v;
                         }
                     }
