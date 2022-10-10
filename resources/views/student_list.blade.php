@@ -49,7 +49,7 @@
 							<td>{{$value->first_name}}</td>
 							<td>{{$value->last_name}}</td>
 							<td>{{$value->email}}</td>
-							<td>{{$value->position_id}}</td>
+							<td>{{$class[$value->position_id]}}</td>
 							<td><button class="btn btn-primary" onclick="student_detail({{$value->id}})">Detail</button></td>
 						</tr>
 						<?php $no = $no+1?>

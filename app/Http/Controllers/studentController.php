@@ -14,9 +14,14 @@ class studentController extends Controller
 
             $data = $db_model->getStudentList();
 
-       
+            $classname = setting_model::getAllClass();
 
-            return view('student_list',array('data'=>$data));
+            foreach($classname as $key => $value){
+
+                $class_array[$value->id]=$value->position_name;
+            }
+
+            return view('student_list',array('data'=>$data,'class'=>$class_array));
 
 
         } catch (Exception $e) {

@@ -29,17 +29,21 @@ class emailController extends Controller
 
                 if ($value->value) {
                     foreach (json_decode($value->value) as $k => $v) {
-                        if($k == 7){
+
+                        if (!empty($v)) {
+                             if($k == 7){
                             $primary_email[] = $v;
+                            }
+                            //cc-carbon copy
+                            if ($k == 8 || $k == 9) {
+                                $secondary_email[] = $v;
+                            }
                         }
-                        //cc-carbon copy
-                        if ($k == 8 || $k == 9) {
-                            $secondary_email[] = $v;
-                        }
+                       
                     }
                 }
 
-                dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datettime,$value->punch_state,$primary_email,$secondary_email));
+                dispatch(new dailyEmailQueue($value->empid,$value->first_name.' '.$value->last_name,$value->punch_datetime,$value->punch_state,$primary_email,$secondary_email));
 
                 $primary_email = array();
                 $secondary_email = array();
