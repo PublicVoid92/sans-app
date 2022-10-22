@@ -296,4 +296,26 @@ class db_model extends Model
     }
 
 
+
+    public function powerschoolfunction(){
+
+
+        $result =  DB::connection('pgsql')->table('personnel_employee as a')
+
+                    // ->select('a.first_name','a.last_name','a.emp_code','b.position_name','c.punch_time')
+                    ->selectraw('a.first_name,a.last_name,a.emp_code,b.position_name,c.punch_time,c.punch_time::TIMESTAMP::TIME as punch_time2')
+
+                    ->join('personnel_position as b','a.position_id','=','b.id')
+                    ->leftjoin('iclock_transaction as c','a.id','=','c.emp_id')
+                    ->whereDate('punch_time',date('Y-m-d'))
+                    ->where('is_active',1)
+                    ->where('c.punch_state',0)
+                    ->orderby('b.position_name')
+                    ->get()->toarray();
+
+
+        return $result;
+    }
+
+
 }

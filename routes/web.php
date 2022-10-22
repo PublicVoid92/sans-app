@@ -47,6 +47,7 @@ Route::any('/lecturer/lecturerdelete','lecturerController@lecturerDelete');
 //Email
 Route::get('/email/dailyemail','emailController@dailyEmail');
 Route::get('/email/lecturer','emailController@lecturerEmail');
+Route::get('/email/powerschool','emailController@powerschoolsubmit');
 
 
 

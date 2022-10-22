@@ -26,18 +26,50 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
 
+
+        // Production   
         $schedule->call(function () {
             $email_controller = new emailController;
            $email_controller->dailyEmail();
         })->name('daily email notification')->everyFiveMinutes();
+
+      
 
 
         $schedule->call(function () {
             $email_controller = new emailController;
            $email_controller->lecturerEmail();
         })->name('lecturer email')->dailyAt('09:00');
+
+
+
+        $schedule->call(function () {
+            $email_controller = new emailController;
+           $email_controller->powerschoolsubmit();
+        })->name('powerschool email')->dailyAt('10:00');
+
+
+        // Demo purpose
+
+        // $schedule->call(function () {
+        //     $email_controller = new emailController;
+        //    $email_controller->dailyEmail();
+        // })->name('daily email notification')->everyMinute();
+
+        //   $schedule->call(function () {
+        //     $email_controller = new emailController;
+        //    $email_controller->lecturerEmail();
+        // })->name('lecturer email')->everyMinute();
+
+        // $schedule->call(function () {
+        //     $email_controller = new emailController;
+        //    $email_controller->powerschoolsubmit();
+        // })->name('powerschool email')->everyMinute();
+
+
+
         
-    }
+    }   
 
     /**
      * Register the commands for the application.

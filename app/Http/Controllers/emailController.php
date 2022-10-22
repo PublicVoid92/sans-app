@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\db_model;
 use App\Jobs\dailyEmailQueue;
 use App\Jobs\lecturerEmailQueue;
+use App\Jobs\powerschoolEmailQueue;
+use Shuchkin\SimpleXLSXGen;
 
 
 class emailController extends Controller
@@ -169,5 +171,66 @@ class emailController extends Controller
         } catch (Exception $e) {
 
         }
+    }
+
+
+    public function powerschoolsubmit(){
+
+
+        // select today attendabce
+
+        $studentlist = db_model::powerschoolfunction();
+
+        $books = [
+            ['ISBN', 'title', 'author', 'publisher', 'ctry' ],
+            [618260307, 'The Hobbit', 'J. R. R. Tolkien', 'Houghton Mifflin', 'USA'],
+            [908606664, 'Slinky Malinki', 'Lynley Dodd', 'Mallinson Rendel', 'NZ']
+        ];
+
+        $attendance_excel_creator[] = ['Student Name','Student No','Grade','Attendance'];
+
+
+        foreach ($studentlist as $key => $value) {
+
+     
+            if (!empty($value->punch_time2)) {
+                 
+                  if ($value->punch_time2 <= '08:10:00') {
+                        $status = 'P';
+                  }else{
+
+                    $status = 'T';
+                  }
+            }else{
+
+                $status = 'A';
+            }
+            $attendance_excel_creator[] = [
+
+                                                
+                                                    $value->first_name.' '.$value->last_name,
+                                                    $value->emp_code,
+                                                    $value->position_name,
+                                                    $status
+                                                
+
+                                        ];
+
+
+                                          
+
+
+         
+        }
+  
+
+        // $SimpleXLSXGen = new SimpleXLSXGen;
+
+        $xlsx = SimpleXLSXGen::fromArray( $attendance_excel_creator );
+        $xlsx->saveAs('storage/powerschool_attendance/'.date('dmy').'.xlsx');
+
+        // send to rotimi
+
+         dispatch(new powerschoolEmailQueue());
     }
 }
